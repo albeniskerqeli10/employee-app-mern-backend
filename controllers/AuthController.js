@@ -18,6 +18,7 @@ const show = async (req,res) => {
 
 
 const register = async (req, res) => {
+  const email = req.body.email;
   let user = await User.findOne({ email });
   if (user){
     res.json({
