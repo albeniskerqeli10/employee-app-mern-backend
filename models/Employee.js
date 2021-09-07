@@ -20,7 +20,7 @@ const employeeSchema = new Schema({
         type: String,
     },
     salary:{
-        type: String,
+        type: Number,
     },
     avatar:{
        type:String,
