@@ -18,15 +18,15 @@ const show = async (req,res) => {
 
 
 const register = async (req, res) => {
-  const isNewUser = User.isThisEmailInUse(req.body.email);
-  // if(!isNewUser) {
-  //   return res.json({
-  //     error: "Email already in use"
-  //   })
-  // }
+  let user = await User.findOne({ email });
+  if (user){
+    res.json({
+      error: "Email already exists",
+    });
+  }
+ else {
   bcrypt.hash(req.body.password, 10, async (err, hashedPass) => {
-
-    if (!isNewUser) {
+    if (err) {
       res.json({ error: err });
     } else {
       let user = new User({
@@ -48,6 +48,9 @@ const register = async (req, res) => {
         });
     }
   });
+}
+
+
 };
 
 // define the login route
