@@ -27,9 +27,6 @@ const register = async (req, res) => {
   }
  else {
   bcrypt.hash(req.body.password, 10, async (err, hashedPass) => {
-    if (err) {
-      res.json({ error: err });
-    } else {
       let user = new User({
         name: req.body.name,
         email: req.body.email,
@@ -47,7 +44,7 @@ const register = async (req, res) => {
             error: "An error occurred",
           });
         });
-    }
+    
   });
 }
 
