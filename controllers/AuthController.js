@@ -18,6 +18,12 @@ const show = async (req,res) => {
 
 
 const register = async (req, res) => {
+  const isNewUser = User.isThisEmailInUse(req.body.email);
+  if(!isNewUser) {
+    return res.json({
+      error: "Email already in use"
+    })
+  }
   bcrypt.hash(req.body.password, 10, async (err, hashedPass) => {
     if (err) {
       res.json({ error: err });
