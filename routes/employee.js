@@ -5,10 +5,10 @@ const upload = require('../middleware/upload.js')
 const authenticate = require('../middleware/authenticate');
  router.get('/', authenticate, EmployeeController.index);
 
- router.post('/show', EmployeeController.show);
+ router.get('/show/:id', EmployeeController.show);
 
  router.post('/store',  authenticate, upload.single('avatar'), EmployeeController.store);
- router.post('/update', EmployeeController.update);
+ router.update('/update/:id', EmployeeController.update);
  router.delete('/delete/:id', EmployeeController.destroy);
 
 module.exports = router;
