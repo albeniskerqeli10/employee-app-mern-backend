@@ -8,7 +8,7 @@ const authenticate = require('../middleware/authenticate');
  router.get('/show/:id', EmployeeController.show);
 
  router.post('/store',  authenticate, upload.single('avatar'), EmployeeController.store);
- router.update('/update/:id', EmployeeController.update);
+ router.put('/update/:id', EmployeeController.update);
  router.delete('/delete/:id', EmployeeController.destroy);
 
 module.exports = router;
