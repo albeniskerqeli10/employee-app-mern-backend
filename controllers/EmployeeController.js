@@ -47,9 +47,8 @@ const store = async (req, res) => {
 
 //Show the details of a single employee
 const show = async (req, res) => {
-    let employeeID = req.body.employeeID;
    
-   await Employee.findById(employeeID).then(response => {
+   await Employee.findById(req.params.id).then(response => {
         res.json({response})
     }).catch(err => {
         res.json({error:'An error Occurred'})
@@ -68,7 +67,7 @@ const update = async (req, res) => {
     salary: req.body.salary,
 
     }
-    await Employee.findByIdAndUpdate(employeeID, updatedData).then(response => {
+    await Employee.findByIdAndUpdate(req.params.id, updatedData).then(response => {
         res.json({message:'Employee Updated Successfully'})
     }).catch(err => {
         res.json({error:'An error Occured'})
