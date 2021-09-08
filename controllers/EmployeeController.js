@@ -28,7 +28,12 @@ const store = async (req, res) => {
             email: req.body.email,
             phone: req.body.phone,
             salary: req.body.salary, 
+            
         })
+            
+    if(req.file) {
+        newEmployee.avatar = req.file.path;
+    }
         const employee = await newEmployee.save();
         res.json(employee);
     }
@@ -37,10 +42,7 @@ const store = async (req, res) => {
         console.log(err);
 
     }
-    
-    if(req.file) {
-        newEmployee.avatar = req.file.path;
-    }
+
 }
 
 //Show the details of a single employee
